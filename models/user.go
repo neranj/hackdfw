@@ -3,7 +3,6 @@ package models
 import (
 	"errors"
 	"github.com/astaxie/beego/orm"
-	"fmt"
 )
 
 var (
@@ -15,24 +14,27 @@ func init(){
 }
 
 type User struct {
-	Id       int    `orm:"pk"`
+	Id       int    `orm:"pk;auto"`
 	Email    string
-	Password string
+	Password string `json:"-"`
 }
 
+func (u *User) TableName() string {
+	return "users"
+}
 
-func AddUser(u User) int {
+func AddUser(u *User) error {
 	o := orm.NewOrm()
-	fmt.Println(o.Insert(&u))
-
-	return u.Id
+	_, err := o.Insert(u)
+	return err
 }
 
-func GetUser(uid string) (u *User, err error) {
-	if u, ok := UserList[uid]; ok {
-		return u, nil
-	}
-	return nil, errors.New("User not exists")
+func GetUser(id int) (*User, error) {
+	o := orm.NewOrm()
+	user := &User{Id: id}
+	err := o.Read(user)
+
+	return user, err
 }
 
 func GetAllUsers() map[string]*User {

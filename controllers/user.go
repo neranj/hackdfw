@@ -21,8 +21,11 @@ type UserController struct {
 func (u *UserController) Post() {
 	var user models.User
 	json.Unmarshal(u.Ctx.Input.RequestBody, &user)
-	uid := models.AddUser(user)
-	u.Data["json"] = map[string]int{"uid": uid}
+	err := models.AddUser(&user)
+	if err != nil {
+		// do something
+	}
+	u.Data["json"] = user
 	u.ServeJSON()
 }
 
