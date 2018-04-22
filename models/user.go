@@ -61,6 +61,14 @@ func Login(email, password string) bool {
 	return false
 }
 
-func DeleteUser(uid string) {
-	delete(UserList, uid)
+func DeleteProject(uid int) bool {
+	o := orm.NewOrm()
+	_,err := o.Delete(&Project{ Projectid: uid})
+	if(err == nil){
+		return false
+	}else{
+		return true
+	}
 }
+
+
