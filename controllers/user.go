@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 
 	"github.com/astaxie/beego"
+	"strconv"
 )
 
 // Operations about Users
@@ -47,8 +48,12 @@ func (u *UserController) GetAll() {
 // @router /:uid [get]
 func (u *UserController) Get() {
 	uid := u.GetString(":uid")
+	id, err := strconv.Atoi(uid)
+	if err != nil {
+		panic(err) // probably dont panic
+	}
 	if uid != "" {
-		user, err := models.GetUser(uid)
+		user, err := models.GetUser(id)
 		if err != nil {
 			u.Data["json"] = err.Error()
 		} else {
@@ -66,6 +71,7 @@ func (u *UserController) Get() {
 // @Failure 403 :uid is not int
 // @router /:uid [put]
 func (u *UserController) Put() {
+	/*
 	uid := u.GetString(":uid")
 	if uid != "" {
 		var user models.User
@@ -78,6 +84,7 @@ func (u *UserController) Put() {
 		}
 	}
 	u.ServeJSON()
+	*/
 }
 
 // @Title Delete

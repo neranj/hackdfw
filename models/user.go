@@ -41,16 +41,16 @@ func GetAllUsers() map[string]*User {
 	return UserList
 }
 
-func UpdateUser(uid string, uu *User) (a *User, err error) {
-	if u, ok := UserList[uid]; ok {
-		if uu.Password != "" {
-			u.Password = uu.Password
-		}
-		if uu.Email != "" {
-			u.Email = uu.Email
-		}
-		return u, nil
-	}
+func UpdateUser(uid int, uu *User) (a *User, err error) {
+	//if u, ok := UserList[uid]; ok {
+	//	if uu.Password != "" {
+	//		u.Password = uu.Password
+	//	}
+	//	if uu.Email != "" {
+	//		u.Email = uu.Email
+	//	}
+	//	return u, nil
+	//}
 	return nil, errors.New("User Not Exist")
 }
 
