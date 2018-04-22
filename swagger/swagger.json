@@ -113,10 +113,10 @@
                 }
             }
         },
-        "/user/": {
+        "/users/": {
             "get": {
                 "tags": [
-                    "user"
+                    "users"
                 ],
                 "description": "get all Users",
                 "operationId": "UserController.GetAll",
@@ -131,7 +131,7 @@
             },
             "post": {
                 "tags": [
-                    "user"
+                    "users"
                 ],
                 "description": "create users",
                 "operationId": "UserController.CreateUser",
@@ -156,10 +156,10 @@
                 }
             }
         },
-        "/user/login": {
+        "/users/login": {
             "get": {
                 "tags": [
-                    "user"
+                    "users"
                 ],
                 "description": "Logs user into the system",
                 "operationId": "UserController.Login",
@@ -189,10 +189,10 @@
                 }
             }
         },
-        "/user/logout": {
+        "/users/logout": {
             "get": {
                 "tags": [
-                    "user"
+                    "users"
                 ],
                 "description": "Logs out current logged in user session",
                 "operationId": "UserController.logout",
@@ -203,10 +203,10 @@
                 }
             }
         },
-        "/user/{uid}": {
+        "/users/{uid}": {
             "get": {
                 "tags": [
-                    "user"
+                    "users"
                 ],
                 "description": "get user by uid",
                 "operationId": "UserController.Get",
@@ -233,7 +233,7 @@
             },
             "put": {
                 "tags": [
-                    "user"
+                    "users"
                 ],
                 "description": "update the user",
                 "operationId": "UserController.Update",
@@ -269,7 +269,7 @@
             },
             "delete": {
                 "tags": [
-                    "user"
+                    "users"
                 ],
                 "description": "delete the user",
                 "operationId": "UserController.Delete",
@@ -366,7 +366,7 @@
     },
     "tags": [
         {
-            "name": "user",
+            "name": "users",
             "description": "Operations about Users\n"
         }
     ]

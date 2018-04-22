@@ -75,10 +75,10 @@ paths:
           description: '{string} delete success!'
         "403":
           description: pid is empty
-  /user/:
+  /users/:
     get:
       tags:
-      - user
+      - users
       description: get all Users
       operationId: UserController.GetAll
       responses:
@@ -88,7 +88,7 @@ paths:
             $ref: '#/definitions/models.User'
     post:
       tags:
-      - user
+      - users
       description: create users
       operationId: UserController.CreateUser
       parameters:
@@ -103,10 +103,10 @@ paths:
           description: '{int} models.User.Id'
         "403":
           description: body is empty
-  /user/{uid}:
+  /users/{uid}:
     get:
       tags:
-      - user
+      - users
       description: get user by uid
       operationId: UserController.Get
       parameters:
@@ -124,7 +124,7 @@ paths:
           description: :uid is empty
     put:
       tags:
-      - user
+      - users
       description: update the user
       operationId: UserController.Update
       parameters:
@@ -148,7 +148,7 @@ paths:
           description: :uid is not int
     delete:
       tags:
-      - user
+      - users
       description: delete the user
       operationId: UserController.Delete
       parameters:
@@ -162,10 +162,10 @@ paths:
           description: '{string} delete success!'
         "403":
           description: uid is empty
-  /user/login:
+  /users/login:
     get:
       tags:
-      - user
+      - users
       description: Logs user into the system
       operationId: UserController.Login
       parameters:
@@ -184,10 +184,10 @@ paths:
           description: '{string} login success'
         "403":
           description: user not exist
-  /user/logout:
+  /users/logout:
     get:
       tags:
-      - user
+      - users
       description: Logs out current logged in user session
       operationId: UserController.logout
       responses:
@@ -242,6 +242,6 @@ definitions:
         type: integer
         format: int64
 tags:
-- name: user
+- name: users
   description: |
     Operations about Users
