@@ -94,8 +94,8 @@ func (u *UserController) Put() {
 // @Failure 403 uid is empty
 // @router /:uid [delete]
 func (u *UserController) Delete() {
-	uid := u.GetString(":uid")
-	models.DeleteUser(uid)
+	//uid := u.GetString(":uid")
+	//models.DeleteUser(uid)
 	u.Data["json"] = "delete success!"
 	u.ServeJSON()
 }
@@ -111,9 +111,9 @@ func (u *UserController) Login() {
 	username := u.GetString("username")
 	password := u.GetString("password")
 	if models.Login(username, password) {
-		u.Data["json"] = "login success"
+		u.Data["json"] = map[string]bool{ "success": true }
 	} else {
-		u.Data["json"] = "user not exist"
+		u.Data["json"] = map[string]bool{ "success": false }
 	}
 	u.ServeJSON()
 }
