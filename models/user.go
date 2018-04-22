@@ -2,29 +2,29 @@ package models
 
 import (
 	"errors"
-	"strconv"
-	"time"
-
+	"github.com/astaxie/beego/orm"
+	"fmt"
 )
 
 var (
 	UserList map[string]*User
 )
 
-func init() {
-	UserList = make(map[string]*User)
+func init(){
+	orm.RegisterModel(new(User))
 }
 
 type User struct {
-	Id       string
+	Id       int    `orm:"pk"`
 	Email    string
 	Password string
 }
 
 
-func AddUser(u User) string {
-	u.Id = "user_" + strconv.FormatInt(time.Now().UnixNano(), 10)
-	UserList[u.Id] = &u
+func AddUser(u User) int {
+	o := orm.NewOrm()
+	fmt.Println(o.Insert(&u))
+
 	return u.Id
 }
 
