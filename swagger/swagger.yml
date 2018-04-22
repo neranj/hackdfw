@@ -11,6 +11,70 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
 basePath: /v1
 paths:
+  /projects/:
+    get:
+      tags:
+      - projects
+      description: get all Projects
+      operationId: ProjectController.GetAll
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Project'
+    post:
+      tags:
+      - projects
+      description: create projects
+      operationId: ProjectController.CreateProject
+      parameters:
+      - in: body
+        name: body
+        description: body for project content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Project'
+      responses:
+        "200":
+          description: '{int} models.Project'
+        "403":
+          description: body is empty
+  /projects/{id}:
+    get:
+      tags:
+      - projects
+      description: get project by id
+      operationId: ProjectController.Get
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Project'
+        "403":
+          description: :uid is empty
+  /projects/{uid}:
+    delete:
+      tags:
+      - projects
+      description: delete the project
+      operationId: ProjectController.Delete
+      parameters:
+      - in: path
+        name: pid
+        description: The pid you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: pid is empty
   /user/:
     get:
       tags:
@@ -141,6 +205,33 @@ definitions:
       Score:
         type: integer
         format: int64
+  models.Project:
+    title: Project
+    type: object
+    properties:
+      Address:
+        type: string
+      Createdon:
+        type: string
+      Creatorid:
+        type: string
+      Discription:
+        type: string
+      Donepercentage:
+        type: string
+      Lat:
+        type: string
+      Long:
+        type: string
+      Projectid:
+        type: integer
+        format: int64
+      Status:
+        type: string
+      Title:
+        type: string
+      Updatedon:
+        type: string
   models.User:
     title: User
     type: object
