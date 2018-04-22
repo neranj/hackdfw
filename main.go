@@ -9,6 +9,7 @@ import (
 	_ "github.com/lib/pq"
 
 	"fmt"
+	"os"
 )
 
 func main() {
@@ -31,5 +32,10 @@ func main() {
 		beego.BConfig.WebConfig.StaticDir["/swagger"] = "swagger"
 	}
 
-	beego.Run()
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	beego.Run(":" + port)
 }
